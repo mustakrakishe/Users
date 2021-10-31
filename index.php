@@ -22,7 +22,7 @@
         <div id="status" class="text-primary text-center"></div>
 
         <div class="d-flex justify-content-center">
-            <form id="seedUsers" action="http/seed.php" method="post">
+            <form id="seed" action="http/seed.php" method="post">
                 <label for="amount" class="form-label">Добавить записи</label>
                 <div class="input-group" style="width: 250px">
                     <input type="number" name="amount" class="form-control" placeholder="Количество">
@@ -30,6 +30,8 @@
                 </div>
             </form>
         </div>
+
+        <form id="search" action="http/index.php" method="get"></form>
 
         <table id="users" class="table table-striped text-center">
             <thead>
@@ -47,7 +49,7 @@
                         <input type="range" name="age-min" form="search" id="age-min" min="18" max="40" value="18" class="form-range">
                         <input type="range" name="age-max" form="search" id="age-max" min="18" max="40" value="40" class="form-range">
                         
-                        <output id="output-age-min"></output> - <output id="output-age-max"></output>
+                        <output id="age-min-output"></output> - <output id="age-max-output"></output>
                     </td>
                     <td width="20%">
                         <input type="search" name="name" form="search" id="name" class="form-control">
