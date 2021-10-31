@@ -18,6 +18,16 @@
             <h1 class="text-center mb-3">Users</h1>
         </a>
 
+        <div class="d-flex justify-content-center">
+            <form id="seedUsers" action="http/seed.php" method="post">
+                <label for="amount" class="form-label">Добавить записи</label>
+                <div class="input-group" style="width: 250px">
+                    <input type="number" name="amount" class="form-control" placeholder="Количество">
+                    <button type="tubmit" class="btn btn-outline-secondary">Добавить</button>
+                </div>
+            </form>
+        </div>
+
         <table id="users-table" class="table table-striped text-center">
             <thead>
                 <tr>
@@ -34,4 +44,5 @@
         </table>
     </div>
 </body>
+
 </html>
