@@ -1,6 +1,7 @@
 const STATUS_CONTAINER = '#status';
 const SEED_USERS_FORM = 'form#seedUsers';
 const USERS_TABLE_BODY = 'table#users tbody';
+const USER_ROWS = 'tr[name=user]';
 
 refreshUsersTable();
 
@@ -26,7 +27,7 @@ async function refreshUsersTable(){
 
     let response = await $.get('http/index.php');
 
-    $(USERS_TABLE_BODY).empty();
+    $(USERS_TABLE_BODY).children(USER_ROWS).remove();
 
     let hits = JSON.parse(response);
 
@@ -35,7 +36,7 @@ async function refreshUsersTable(){
             let user = hit._source;
 
             let tableRow =
-            '<tr>'
+            '<tr name="user">'
                 + '<td>' + user.age + '</td>'
                 + '<td>' + user.name + '</td>'
                 + '<td>' + user.email + '</td>'
