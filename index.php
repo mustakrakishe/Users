@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <script src="js/jquery-3.6.0.min.js"></script>
+    <script defer src="js/script.js"></script>
 </head>
 
 <body>
@@ -43,6 +44,10 @@
             </tbody>
         </table>
     </div>
+
+    <pre>
+
+    </pre>
 </body>
 
 </html>
