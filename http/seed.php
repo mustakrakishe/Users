@@ -1,6 +1,7 @@
 <?php
 
 use Elasticsearch\ClientBuilder;
+use Faker\Factory;
 
 require '../vendor/autoload.php';
 
@@ -33,6 +34,13 @@ if(isset($_POST['amount'])){
         $response = $client->index($params);
     }
 
+    $faker = Faker\Factory::create('Ru_RU');
+    $operators = [
+        '039', '067', '068', '096', '097', '098',
+        '050', '066', '095', '099',
+        '063', '093',
+    ];
+
     for($i = 0; $i < $amount; $i++){
         $params['body'][] = [
             'index' => [
@@ -42,16 +50,14 @@ if(isset($_POST['amount'])){
         ];
 
         $params['body'][] = [
-            'age'     => 'my_value',
-            'name' => 'some more values',
-            'email' => 'some more values',
-            'phone' => 'some more values',
+            'age' => $faker->firstName(),
+            'name' => $faker->numberBetween(18, 50),
+            'email' => $faker->email(),
+            'phone' => '+38' . $faker->randomElement($operators) . $faker->randomNumber(7, true),
         ];
     }
 
-    $responses = $client->bulk($params);
-    
-    
+    $response = $client->bulk($params);
     
     var_dump($response);
     
