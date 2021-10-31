@@ -42,7 +42,23 @@
             </thead>
 
             <tbody>
-
+                <tr name="filters" class="align-middle">
+                    <td width="20%">
+                        <input type="range" name="age-min" form="search" id="age-min" min="18" max="40" value="18" class="form-range">
+                        <input type="range" name="age-max" form="search" id="age-max" min="18" max="40" value="40" class="form-range">
+                        
+                        <output id="output-age-min"></output> - <output id="output-age-max"></output>
+                    </td>
+                    <td width="20%">
+                        <input type="search" name="name" form="search" id="name" class="form-control">
+                    </td>
+                    <td width="30%">
+                        <input type="search" name="email" form="search" id="email" class="form-control">
+                    </td>
+                    <td>
+                        <input type="search" name="phone" form="search" id="phone" class="form-control">
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
