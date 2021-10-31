@@ -19,6 +19,8 @@
             <h1 class="text-center mb-3">Users</h1>
         </a>
 
+        <div id="status" class="text-primary text-center"></div>
+
         <div class="d-flex justify-content-center">
             <form id="seedUsers" action="http/seed.php" method="post">
                 <label for="amount" class="form-label">Добавить записи</label>
@@ -29,7 +31,7 @@
             </form>
         </div>
 
-        <table id="users-table" class="table table-striped text-center">
+        <table id="users" class="table table-striped text-center">
             <thead>
                 <tr>
                     <th scope="col">Age</th>

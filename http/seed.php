@@ -7,7 +7,6 @@ require '../vendor/autoload.php';
 
 if(isset($_POST['amount'])){
     $INDEX = 'users';
-    $TYPE = 'user';
 
     $amount = $_POST['amount'];
 
@@ -18,7 +17,6 @@ if(isset($_POST['amount'])){
     if(!$indexExists){
         $params = [
             'index' => $INDEX,
-            'type' => $TYPE,
             'body' => [
                 'mappings' => [
                     'properties' => [
@@ -34,7 +32,7 @@ if(isset($_POST['amount'])){
         $response = $client->index($params);
     }
 
-    $faker = Faker\Factory::create('Ru_RU');
+    $faker = Factory::create('Ru_RU');
     $operators = [
         '039', '067', '068', '096', '097', '098',
         '050', '066', '095', '099',
@@ -45,13 +43,12 @@ if(isset($_POST['amount'])){
         $params['body'][] = [
             'index' => [
                 '_index' => $INDEX,
-                '_type'    => $TYPE
             ]
         ];
 
         $params['body'][] = [
-            'age' => $faker->firstName(),
-            'name' => $faker->numberBetween(18, 50),
+            'age' => $faker->numberBetween(18, 50),
+            'name' => $faker->firstName(),
             'email' => $faker->email(),
             'phone' => '+38' . $faker->randomElement($operators) . $faker->randomNumber(7, true),
         ];
