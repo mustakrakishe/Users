@@ -1,6 +1,8 @@
 # Users
-
-An application to learn Elasticsearch base.
+[![version](https://img.shields.io/badge/php->=5.4.0-blue.svg)](https://www.php.net/downloads.php)
+[![version](https://img.shields.io/badge/elasticsearch-7.15.1-blue.svg)](https://www.elastic.co/downloads/elasticsearch)
+[![dependecy](https://img.shields.io/badge/elasticsearch--php-v7.15.0-yellow.svg)](https://github.com/elastic/elasticsearch-php)
+[![version](https://img.shields.io/badge/fakerphp-v1.16.0-yellow.svg)](https://github.com/FakerPHP/Faker/)
 
 ## Description
 A web application which allows to seed and search users by a few filters.
@@ -17,7 +19,7 @@ A web application which allows to seed and search users by a few filters.
     - age - by range;
     - name - by the first letters;
     - email - full matching;
-    - phone - by an operator code (098, 067 etc.).
+    - phone - by operator code.
 - A user table displays "No results." in case documents miss or don't match filters.
 - Dinamic status string.
 - All actions don't require a page reload.
