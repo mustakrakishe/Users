@@ -20,7 +20,7 @@ if (isset($_POST['amount'])) {
         $response = $client->index($params);
     }
 
-    $params = ['body' => []];
+    $params = ['refresh' => true];
 
     for ($i = 0; $i < $total; $i++) {
         $params['body'][] = [
@@ -33,19 +33,13 @@ if (isset($_POST['amount'])) {
         
         if ($i % $BATCH_SIZE == 0) {
             $client->bulk($params);
-            $params = ['body' => []];
+            $params = ['refresh' => true];
         }
     }
 
     if (!empty($params['body'])) {
         $client->bulk($params);
     }
-
-    $params = [
-        'index' => $index,
-        'refresh' => true,
-    ];
-    $client->index($params);
     
     // echo json_encode($response);
 }
