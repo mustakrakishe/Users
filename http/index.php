@@ -23,6 +23,11 @@ if($indexExists){
         $ageRules['range']['age']['lte'] = $filters['age-max'];
         array_push($must, $ageRules);
         
+        if(isset($filters['name'])){
+            $emailRules['prefix']['name'] = $filters['name'];
+            array_push($must, $emailRules);
+        }
+        
         if(isset($filters['email'])){
             $emailRules['match']['email'] = $filters['email'];
             array_push($must, $emailRules);
