@@ -17,7 +17,7 @@ if (isset($_POST['amount'])) {
 
     if (!$indexExists) {
         $params = createIndexParams($INDEX);
-        $response = $client->index($params);
+        $client->indices()->create($params);
     }
 
     $params = ['refresh' => true];
