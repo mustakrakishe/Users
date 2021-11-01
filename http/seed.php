@@ -9,30 +9,42 @@ if(isset($_POST['amount'])){
     $INDEX = 'users';
 
     $amount = $_POST['amount'];
-
     $client = ClientBuilder::create()->build();
 
-    $indexExists = $client->indices()->exists(['index' => $INDEX]);
+    $params = ['index' => $INDEX];
+    $indexExists = $client->indices()->exists($params);
     
     if(!$indexExists){
-        $params = [
-            'index' => $INDEX,
-            'body' => [
-                'mappings' => [
-                    'properties' => [
-                        'age' => ['type' => 'byte'],
-                        'name' => ['type' => 'text'],
-                        'email' => ['type' => 'keyword'],
-                        'phone' => ['type' => 'text'],
-                    ],
-                ],
-            ],
-        ];
-    
+        $params = createIndexParams($INDEX);
         $response = $client->index($params);
     }
 
+    $params = indexBulkParams($INDEX, $amount);
+    $response = $client->bulk($params);
+    // echo json_encode($response);
+}
+
+exit;
+
+function createIndexParams($INDEX){
+    return [
+        'index' => $INDEX,
+        'body' => [
+            'mappings' => [
+                'properties' => [
+                    'age' => ['type' => 'byte'],
+                    'name' => ['type' => 'text'],
+                    'email' => ['type' => 'keyword'],
+                    'phone' => ['type' => 'text'],
+                ],
+            ],
+        ],
+    ];
+}
+
+function indexBulkParams($INDEX, $amount){
     $faker = Factory::create('Ru_RU');
+
     $operators = [
         '039', '067', '068', '096', '097', '098',
         '050', '066', '095', '099',
@@ -47,18 +59,12 @@ if(isset($_POST['amount'])){
         ];
 
         $params['body'][] = [
-            'age' => $faker->numberBetween(18, 50),
+            'age' => $faker->numberBetween(18, 40),
             'name' => $faker->firstName(),
             'email' => $faker->email(),
             'phone' => '+38' . $faker->randomElement($operators) . $faker->randomNumber(7, true),
         ];
     }
 
-    $response = $client->bulk($params);
-    
-    var_dump($response);
-    
-    // echo json_encode($response);
+    return $params;
 }
-
-exit;
