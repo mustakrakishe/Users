@@ -51,6 +51,8 @@ function indexBulkParams($INDEX, $amount){
         '063', '093',
     ];
 
+    $params = ['refresh' => true];
+
     for($i = 0; $i < $amount; $i++){
         $params['body'][] = [
             'index' => [

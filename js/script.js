@@ -31,13 +31,13 @@ $(document).on('input', SEARCH_FORM_INPUTS, inputHandler);
 
 // handlers
 
-function seedFormSubmitHandler(event){
+async function seedFormSubmitHandler(event){
     event.preventDefault();
     
     $(STATUS_CONTAINER).html('Добавляю записи...');
-    seedUsers();
+    await seedUsers();
     $(STATUS_CONTAINER).html('Обновляю таблицу...');
-    refreshTable();
+    await refreshTable();
     $(STATUS_CONTAINER).html('Готово.');
 }
 
