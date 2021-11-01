@@ -52,22 +52,18 @@
                         <output id="age-min-output"></output> - <output id="age-max-output"></output>
                     </td>
                     <td width="20%">
-                        <input type="search" name="name" form="search" id="name" class="form-control">
+                        <input type="search" name="name" form="search" class="form-control" placeholder="Первые буквы (Андр, Ол...)">
                     </td>
                     <td width="30%">
-                        <input type="search" name="email" form="search" id="email" class="form-control">
+                        <input type="search" name="email" form="search" class="form-control" placeholder="Полный адрес (example@example.com...)">
                     </td>
                     <td>
-                        <input type="search" name="phone" form="search" id="phone" class="form-control">
+                        <input type="search" name="phone" form="search" class="form-control"placeholder="Код оператора (098, 050, 067...)">
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-
-    <pre>
-
-    </pre>
 </body>
 
 </html>

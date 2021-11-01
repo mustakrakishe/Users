@@ -14,7 +14,9 @@ $indexExists = $client->indices()->exists($params);
 if($indexExists){
     $params = ['index' => $INDEX];
     
-    $filters = array_filter($_GET);
+    $filters = array_filter($_GET, function($value){
+        return $value != null;
+    });
     
     if(!empty($filters)){
         $must = [];
@@ -24,13 +26,18 @@ if($indexExists){
         array_push($must, $ageRules);
         
         if(isset($filters['name'])){
-            $emailRules['prefix']['name'] = $filters['name'];
-            array_push($must, $emailRules);
+            $nameRules['prefix']['name'] = $filters['name'];
+            array_push($must, $nameRules);
         }
         
         if(isset($filters['email'])){
             $emailRules['match']['email'] = $filters['email'];
             array_push($must, $emailRules);
+        }
+        
+        if(isset($filters['phone'])){
+            $phoneRules['wildcard']['phone'] = '+??' . $filters['phone'] . '???????';
+            array_push($must, $phoneRules);
         }
     
         $params['body']['query']['bool'] = compact('must');

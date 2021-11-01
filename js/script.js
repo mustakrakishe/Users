@@ -85,6 +85,7 @@ async function refreshTable(){
         url: $(SEARCH_FORM).attr('action'),
         data: $(SEARCH_FORM).serialize(),
     });
+    
     response = JSON.parse(response);
 
     if(response.status === 1){

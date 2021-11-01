@@ -56,7 +56,7 @@ function createIndexParams($INDEX)
                     'age' => ['type' => 'byte'],
                     'name' => ['type' => 'text'],
                     'email' => ['type' => 'keyword'],
-                    'phone' => ['type' => 'text'],
+                    'phone' => ['type' => 'keyword'],
                 ],
             ],
         ],
