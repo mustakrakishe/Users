@@ -8,29 +8,43 @@ $INDEX = 'users';
 
 $client = ClientBuilder::create()->build();
 
-$params['index'] = $INDEX;
+$params = ['index' => $INDEX];
+$indexExists = $client->indices()->exists($params);
 
-$filters = array_filter($_GET);
-
-if(!empty($filters)){
-    $must = [];
-
-    $ageRules['range']['age']['gte'] = $filters['age-min'];
-    $ageRules['range']['age']['lte'] = $filters['age-max'];
-    array_push($must, $ageRules);
+if($indexExists){
+    $params = ['index' => $INDEX];
     
-    if(isset($filters['email'])){
-        $emailRules['match']['email'] = $filters['email'];
-        array_push($must, $emailRules);
+    $filters = array_filter($_GET);
+    
+    if(!empty($filters)){
+        $must = [];
+    
+        $ageRules['range']['age']['gte'] = $filters['age-min'];
+        $ageRules['range']['age']['lte'] = $filters['age-max'];
+        array_push($must, $ageRules);
+        
+        if(isset($filters['email'])){
+            $emailRules['match']['email'] = $filters['email'];
+            array_push($must, $emailRules);
+        }
+    
+        $params['body']['query']['bool'] = compact('must');
     }
-
-    $params['body']['query']['bool'] = compact('must');
-}
+        
+    $response = $client->search($params);
     
-$response = $client->search($params);
-
-$hits = $response['hits']['hits'];
-
-echo json_encode($hits);
+    $hits = $response['hits']['hits'];
+    
+    echo json_encode([
+        'status' => 1,
+        'hits' => $hits,
+    ]);
+}
+else{
+    echo json_encode([
+        'status' => 1,
+        'hits' => [],
+    ]);
+}
 
 exit;

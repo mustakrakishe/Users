@@ -85,28 +85,31 @@ async function refreshTable(){
         url: $(SEARCH_FORM).attr('action'),
         data: $(SEARCH_FORM).serialize(),
     });
+    response = JSON.parse(response);
 
-    $(USERS_TABLE).find(USER_ROWS).remove();
-    $('#no-results').remove();
-
-    let hits = JSON.parse(response);
-
-    if(hits.length){
-        hits.forEach(hit => {
-            let user = hit._source;
-
-            let tableRow =
-            '<tr name="user">'
-                + '<td>' + user.age + '</td>'
-                + '<td>' + user.name + '</td>'
-                + '<td>' + user.email + '</td>'
-                + '<td>' + user.phone + '</td>'
-            + '</tr>';
-
-            $(USERS_TABLE).children('tbody').append(tableRow);
-        });
-    }
-    else{
-        $(USERS_TABLE).after('<div id="no-results" class="text-center">No results.</div>');
+    if(response.status === 1){
+        $(USERS_TABLE).find(USER_ROWS).remove();
+        $('#no-results').remove();
+    
+        let hits = response.hits;
+    
+        if(hits.length){
+            hits.forEach(hit => {
+                let user = hit._source;
+    
+                let tableRow =
+                '<tr name="user">'
+                    + '<td>' + user.age + '</td>'
+                    + '<td>' + user.name + '</td>'
+                    + '<td>' + user.email + '</td>'
+                    + '<td>' + user.phone + '</td>'
+                + '</tr>';
+    
+                $(USERS_TABLE).children('tbody').append(tableRow);
+            });
+        }
+        else{
+            $(USERS_TABLE).after('<div id="no-results" class="text-center">No results.</div>');
+        }
     }
 }
