@@ -1,8 +1,11 @@
 # Users
 [![version](https://img.shields.io/badge/php->=5.4.0-blue.svg)](https://www.php.net/downloads.php)
+[![version](https://img.shields.io/badge/bootstrap-v5.1.3-blue.svg)](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
 [![version](https://img.shields.io/badge/elasticsearch-7.15.1-blue.svg)](https://www.elastic.co/downloads/elasticsearch)
 [![dependecy](https://img.shields.io/badge/elasticsearch--php-v7.15.0-yellow.svg)](https://github.com/elastic/elasticsearch-php)
-[![version](https://img.shields.io/badge/fakerphp-v1.16.0-yellow.svg)](https://github.com/FakerPHP/Faker/)
+[![dependecy](https://img.shields.io/badge/fakerphp-v1.16.0-yellow.svg)](https://github.com/FakerPHP/Faker/)
+
+An Elasticsearch index filter form.
 
 ## Description
 A web application which allows to seed and search users by a few filters.
