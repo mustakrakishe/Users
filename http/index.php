@@ -26,7 +26,7 @@ if($indexExists){
         array_push($must, $ageRules);
         
         if(isset($filters['name'])){
-            $nameRules['prefix']['name'] = $filters['name'];
+            $nameRules['prefix']['name'] = mb_strtolower($filters['name']);
             array_push($must, $nameRules);
         }
         
