@@ -31,9 +31,9 @@ $(document).on('input', SEARCH_FORM_INPUTS, inputHandler);
 
 // handlers
 
-async function seedFormSubmitHandler(event){
+async function seedFormSubmitHandler(event) {
     event.preventDefault();
-    
+
     $(STATUS_CONTAINER).html('Добавляю записи...');
     await seedUsers();
     $(STATUS_CONTAINER).html('Обновляю таблицу...');
@@ -41,14 +41,14 @@ async function seedFormSubmitHandler(event){
     $(STATUS_CONTAINER).html('Готово.');
 }
 
-function ageMinInputHandler(){
+function ageMinInputHandler() {
     displayAgeMin();
 }
-function ageMaxInputHandler(){
+function ageMaxInputHandler() {
     displayAgeMax();
 }
 
-async function searchFormSubmitHandler(event){
+async function searchFormSubmitHandler(event) {
     event.preventDefault();
 
     $(STATUS_CONTAINER).html('Обновляю таблицу...');
@@ -56,60 +56,60 @@ async function searchFormSubmitHandler(event){
     $(STATUS_CONTAINER).html('Готово.');
 }
 
-function inputHandler(){
+function inputHandler() {
     let formId = $(this).attr('form');
     $('#' + formId).submit();
 }
 
 // helpers
 
-function displayAgeMin(){
+function displayAgeMin() {
     let value = $(AGE_MIN_INPUT).val();
     $(AGE_MIN_OUTPUT).val(value);
 }
 
-function displayAgeMax(){
+function displayAgeMax() {
     let value = $(AGE_MAX_INPUT).val();
     $(AGE_MAX_OUTPUT).val(value);
 }
 
-async function seedUsers(){
+async function seedUsers() {
     let response = await $.post({
         url: $(SEED_FORM).attr('action'),
         data: $(SEED_FORM).serialize(),
     });
 }
 
-async function refreshTable(){
+async function refreshTable() {
     let response = await $.get({
         url: $(SEARCH_FORM).attr('action'),
         data: $(SEARCH_FORM).serialize(),
     });
-    
+
     response = JSON.parse(response);
 
-    if(response.status === 1){
+    if (response.status === 1) {
         $(USERS_TABLE).find(USER_ROWS).remove();
         $('#no-results').remove();
-    
+
         let hits = response.hits;
-    
-        if(hits.length){
+
+        if (hits.length) {
             hits.forEach(hit => {
                 let user = hit._source;
-    
+
                 let tableRow =
-                '<tr name="user">'
+                    '<tr name="user">'
                     + '<td>' + user.age + '</td>'
                     + '<td>' + user.name + '</td>'
                     + '<td>' + user.email + '</td>'
                     + '<td>' + user.phone + '</td>'
-                + '</tr>';
-    
+                    + '</tr>';
+
                 $(USERS_TABLE).children('tbody').append(tableRow);
             });
         }
-        else{
+        else {
             $(USERS_TABLE).after('<div id="no-results" class="text-center">No results.</div>');
         }
     }

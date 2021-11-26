@@ -48,7 +48,7 @@
                     <td width="20%">
                         <input type="range" name="age-min" form="search" id="age-min" min="18" max="40" value="18" class="form-range">
                         <input type="range" name="age-max" form="search" id="age-max" min="18" max="40" value="40" class="form-range">
-                        
+
                         <output id="age-min-output"></output> - <output id="age-max-output"></output>
                     </td>
                     <td width="20%">
@@ -58,7 +58,7 @@
                         <input type="search" name="email" form="search" class="form-control" placeholder="Полный адрес (example@example.com...)">
                     </td>
                     <td>
-                        <input type="search" name="phone" form="search" class="form-control"placeholder="Код оператора (098, 050, 067...)">
+                        <input type="search" name="phone" form="search" class="form-control" placeholder="Код оператора (098, 050, 067...)">
                     </td>
                 </tr>
             </tbody>

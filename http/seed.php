@@ -30,7 +30,7 @@ if (isset($_POST['amount'])) {
         ];
 
         $params['body'][] = makeUser();
-        
+
         if ($i % $BATCH_SIZE == 0) {
             $client->bulk($params);
             $params = ['refresh' => true];
@@ -61,7 +61,8 @@ function createIndexParams($INDEX)
     ];
 }
 
-function makeUser(){
+function makeUser()
+{
     $faker = Factory::create('Ru_RU');
 
     $operators = [
