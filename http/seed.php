@@ -40,8 +40,6 @@ if (isset($_POST['amount'])) {
     if (!empty($params['body'])) {
         $client->bulk($params);
     }
-    
-    // echo json_encode($response);
 }
 
 exit;
