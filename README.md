@@ -63,8 +63,8 @@ elasticsearch_folder\bin\elasticsearch.bat
 
 Initial state:
 
-![Init state](screenshots\screenshot_001_-_init_state.jpg "Init state")
+![Init state](https://raw.githubusercontent.com/mustakrakishe/Users/master/screenshots/screenshot_001_-_init_state.jpg "Init state")
 
 Search example:
 
-![Search example](screenshots\screenshot_002_-_search_example.jpg "Search example")
+![Search example](https://raw.githubusercontent.com/mustakrakishe/Users/master/screenshots/screenshot_002_-_search_example.jpg "Search example")
